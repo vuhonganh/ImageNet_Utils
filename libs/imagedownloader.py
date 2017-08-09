@@ -56,9 +56,10 @@ class ImageNetDownloader:
         return filename
 
     def extractTarfile(self, filename):
-        tar = tarfile.open(filename)
-        tar.extractall()
-        tar.close()
+        print 'currently not extracting'
+        #tar = tarfile.open(filename)
+        #tar.extractall()
+        #tar.close()
 
     def downloadBBox(self, wnid):
         filename = str(wnid) + '.tar.gz'
