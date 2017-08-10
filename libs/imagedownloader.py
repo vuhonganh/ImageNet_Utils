@@ -65,12 +65,13 @@ class ImageNetDownloader:
         filename = str(wnid) + '.tar.gz'
         url = self.host + '/downloads/bbox/bbox/' + filename
         try:
-            filename = self.download_file(url, self.mkWnidDir(wnid))
-            currentDir = os.getcwd()
-            os.chdir(wnid)
-            self.extractTarfile(filename)
-            print 'Download bbbox annotation from ' + url + ' to ' + filename
-            os.chdir(currentDir)
+            #filename = self.download_file(url, self.mkWnidDir(wnid))
+            filename = self.download_file(url, os.getcwd())  # download to current dir
+            #currentDir = os.getcwd()
+            #os.chdir(wnid)
+            #self.extractTarfile(filename)
+            #print 'Download bbbox annotation from ' + url + ' to ' + filename
+            #os.chdir(currentDir)
         except Exception, error:
             print 'Fail to download' + url
 
@@ -109,16 +110,16 @@ class ImageNetDownloader:
     def downloadOriginalImages(self, wnid, username, accesskey):
         download_url = 'http://www.image-net.org/download/synset?wnid=%s&username=%s&accesskey=%s&release=latest&src=stanford' % (wnid, username, accesskey)
         try:
-             download_file = self.download_file(download_url, self.mkWnidDir(wnid), wnid + '.tar')
+             download_file = self.download_file(download_url, os.getcwd(), wnid + '.tar')
         except Exception, erro:
             print 'Fail to download : ' + download_url
 
-        currentDir = os.getcwd()
-        extracted_folder = os.path.join(wnid, wnid + '_original_images')
-        if not os.path.exists(extracted_folder):
-            os.mkdir(extracted_folder)
-        os.chdir(extracted_folder)
-        self.extractTarfile(download_file)
-        os.chdir(currentDir)
-        print 'Extract images to ' + extracted_folder
+        #currentDir = os.getcwd()
+        #extracted_folder = os.path.join(wnid, wnid + '_original_images')
+        #if not os.path.exists(extracted_folder):
+            #os.mkdir(extracted_folder)
+        #os.chdir(extracted_folder)
+        #self.extractTarfile(download_file)
+        #os.chdir(currentDir)
+        #print 'Extract images to ' + extracted_folder
 
