@@ -8,6 +8,8 @@ list_dir = [e for e in list_dir if e[0] == 'n']
 
 for e in list_dir:
     id = int (e[1:])
-    print(e, wordnet.synset_from_pos_and_offset('n', id))
+    synset = wordnet.synset_from_pos_and_offset('n', id)
+    syn_name = synset.name().split('.')[0]
+    print('%-15s %-20s %-20s' % (e, syn_name, synset))
 
 
